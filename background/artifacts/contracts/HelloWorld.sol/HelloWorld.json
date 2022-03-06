@@ -1,0 +1,42 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "HelloWorld",
+  "sourceName": "contracts/HelloWorld.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_x",
+          "type": "uint256"
+        }
+      ],
+      "name": "setX",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "x",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506000805560b0806100236000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80630c55699c1460375780634018d9aa146051575b600080fd5b603f60005481565b60405190815260200160405180910390f35b6061605c3660046063565b600055565b005b6000602082840312156073578081fd5b503591905056fea264697066735822122028bd14fcff5d626baf010f9ac7af5a701db571ce720e38b19a8b2760021435e864736f6c63430008040033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c80630c55699c1460375780634018d9aa146051575b600080fd5b603f60005481565b60405190815260200160405180910390f35b6061605c3660046063565b600055565b005b6000602082840312156073578081fd5b503591905056fea264697066735822122028bd14fcff5d626baf010f9ac7af5a701db571ce720e38b19a8b2760021435e864736f6c63430008040033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

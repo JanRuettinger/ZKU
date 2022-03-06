@@ -1,0 +1,11 @@
+await helloworld.x()
+await helloworld.setX(3)
+const helloworld = await HelloWorld.attach('0x5FbDB2315678afecb367f032d93F642f64180aa3')
+ const HelloWorld = await ethers.getContractFactory("HelloWorld");
+clear
+await helloworld.x()
+await helloworld.getX(3)
+await helloworld.setX(3)
+await helloworld.getx()
+const helloworld = await HelloWorld.attach('0x5FbDB2315678afecb367f032d93F642f64180aa3')
+ const HelloWorld = await ethers.getContractFactory("HelloWorld");

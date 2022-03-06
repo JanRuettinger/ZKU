@@ -1,0 +1,110 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/jan/Documents/Programming/crypto/zku/assignments/background/contracts/HelloWorld.sol": {
+      "lastModificationDate": 1645951630280,
+      "contentHash": "18775a87f55c7abec0b376a69b7c2fd7",
+      "sourceName": "contracts/HelloWorld.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "HelloWorld"
+      ]
+    },
+    "/Users/jan/Documents/Programming/crypto/zku/assignments/background/contracts/Ballot.sol": {
+      "lastModificationDate": 1646003755746,
+      "contentHash": "af6eed553528940b059a102c48533523",
+      "sourceName": "contracts/Ballot.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Ballot"
+      ]
+    },
+    "/Users/jan/Documents/Programming/crypto/zku/assignments/background/contracts/ImprovedBallot.sol": {
+      "lastModificationDate": 1646023767019,
+      "contentHash": "8a39e3dfcbce9264986f353da5ab75f5",
+      "sourceName": "contracts/ImprovedBallot.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Ballot"
+      ]
+    }
+  }
+}
