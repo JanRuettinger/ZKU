@@ -1,17 +1,31 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-contract MerkleTreeWithHistory {
+/**
+MerkleTree is a contract used to store hashed meta data of every successful mint from the NFT contract.
+The contract has five functions:
+1. constructor: initializes sub trees with dummy values
+2. zeros: provides dummy values for the sub trees
+3. constructEmptyTree: helper function to compute initial dummy values
+4. insert: external function which inserts a new element into the merkle tree and updates the merkle root accordingly.
+           It is called from the NFT contract after every successful mint.
+5. hashLeftRight: helper function to compute the hash value from two concatenated input values
+
+The implementation was inspired by the Tornado Cash merkle tree contract which can be found here:
+https://github.com/tornadocash/tornado-core/blob/master/contracts/MerkleTreeWithHistory.sol
+*/
+contract MerkleTree {
   uint32 public constant LEVELS = 4;
+  mapping(uint256 => bytes32) public filledSubtrees; // hash values of filled sub trees
+  bytes32 public rootHash; // hash value of root of merkle tree
+  uint32 public nextIndex = 0; // index where the next element will be inserted into the merkle tree
 
-  // filledSubtrees and roots could be bytes32[size], but using mappings makes it cheaper because
-  // it removes index range check on every interaction
-  mapping(uint256 => bytes32) public filledSubtrees;
-  bytes32 public rootHash;
-  uint32 public nextIndex = 0;
-  bytes32[] public hashes;
-  string public ZERO_VALUE = "ZKU";
+  bytes32[] public hashes; // helper array to compute initial dummy values for sub trees
+  string public ZERO_VALUE = "ZKU"; // dummy value
 
+  /**
+    Initialize filled sub trees and rootHash
+   */
   constructor() {
     for (uint32 i = 0; i < LEVELS; i++) {
       filledSubtrees[i] = zeros(i);
@@ -21,13 +35,16 @@ contract MerkleTreeWithHistory {
   }
 
   /**
-    @dev Hash 2 tree leaves, returns MiMC(_left, _right)
+    Hash two leave values  
   */
   function hashLeftRight(bytes32 _left, bytes32 _right) public pure returns (bytes32) {
     bytes32 hashValue = keccak256(abi.encodePacked(_left, _right));
     return hashValue;
   }
 
+  /**
+    External function to insert new element into the merkle tree
+  */  
   function insert(bytes32 _leaf) public returns (uint32 index) {
     uint32 _nextIndex = nextIndex;
     require(_nextIndex != uint32(2)**LEVELS, "Merkle tree is full. No more leaves can be added");
@@ -54,6 +71,9 @@ contract MerkleTreeWithHistory {
     return _nextIndex;
   }
 
+  /**
+    Helper function to compute initial values of merkle tree 
+  */
   function constructEmptyTree() public returns (bytes32 [] memory _hashes){
     delete hashes;
     bytes32 ZERO_HASH = keccak256(bytes(ZERO_VALUE));
@@ -80,7 +100,9 @@ contract MerkleTreeWithHistory {
     return _hashes;
   }
 
-  /// @dev provides Zero (Empty) elements for a MiMC MerkleTree. Up to 32 levels
+  /**
+    provides zero/dummy elements for sub trees of merkle tree. Up to 4 levels
+  */
   function zeros(uint256 i) public pure returns (bytes32) {
     if (i == 0) return bytes32(0x429f7b6f725a9af81fd431fb46226ef1f84bbb45dc974dd64ca3d5a2c6c66128);
     else if (i == 1) return bytes32(0x76a533acc769b7e8fd28d878217a07226ac4228699fc846164d5ddfaea8a678a);
