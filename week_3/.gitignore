@@ -1,3 +1,13 @@
 circomlib
 circom
 triangle_js
+pot12_0000.ptau
+pot12_0001.ptau
+pot12_final.ptau
+proof.json
+public.json
+triangle.r1cs
+triangle_0000.zkey
+triangle_0001.zkey
+verification_key.json
+witness.wtns
