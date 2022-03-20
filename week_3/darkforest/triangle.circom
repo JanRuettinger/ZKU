@@ -34,6 +34,7 @@ template TriangleMove() {
   signal input By;
   signal input Cx;
   signal input Cy;
+	signal output out;
 
 	// check AB and AC are not colinear aka form a triangle
 	signal slope1x;
@@ -69,6 +70,8 @@ template TriangleMove() {
 	comp2.Bx <== Cx;
 	comp2.By <== Cy;
 	comp2.out === 1;
+
+	out <== 1;
 }
 
 component main = TriangleMove();
