@@ -12,3 +12,7 @@ triangle_0000.zkey
 triangle_0001.zkey
 verification_key.json
 witness.wtns
+picknextcard.r1cs
+picknextcard_0000.zkey
+picknextcard_0001.zkey
+input.json
