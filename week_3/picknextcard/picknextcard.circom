@@ -25,13 +25,13 @@ template PickNextCard() {
 	// => then we can be sure that the card hashes were produced using the same suite
 	// This implicitly checks that card 2 has a value in the correct range.
 
-	// Interesting learning: calculating a hash from three inputs is quite expensive! => circuit became to big (650.0000.000 circuits)
-	// Simplification: calculate part of the hashing outside (secret + suite) 
-
-	component cardHashHalf = MiMCSponge(2, 220, 1);
-	cardHashHalf.ins[0] <== cardSuite;
-	cardHashHalf.ins[1] <== secret;
-	cardHashHalf.k <== 0;
+	// Interesting learning:
+	// I tried two different implementations of the same circuit.
+	// Version 1: calculate the hash of the suite + secret and then use the result in the the for loop
+	// Version 2: calculate the hash from scratch for every iteration in the for loop
+	// Result:
+		// Citcuit size version 1: 18534
+		// Circuit size version 2: 25797
 
 	component cardHasher[13];
 
@@ -43,9 +43,10 @@ template PickNextCard() {
 
 	// First hash suite and password =>
 	for(var i = 0; i<13;i++){
-		cardHasher[i] =  MiMCSponge(2, 220, 1);
-		cardHasher[i].ins[0] <== cardHashHalf.outs[0];
-		cardHasher[i].ins[1] <== i;
+		cardHasher[i] =  MiMCSponge(3, 220, 1);
+		cardHasher[i].ins[0] <== cardSuite;
+		cardHasher[i].ins[1] <== secret;
+		cardHasher[i].ins[2] <== i;
 		cardHasher[i].k <== 0;
 
 		card1Comparator[i] = IsEqual();
