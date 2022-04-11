@@ -8,6 +8,14 @@ import "./HarmonyProver.sol";
 import "./TokenLocker.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
+// This contract checks if the proof showing that HRC20 tokens were locked/burnt on Harmony is correct.
+// The only important function to understand the functionality is validateAndExecuteProof().
+// The function takes a Harmony block header, a MMR proof and a receiptdata. merkle tree proof and does the following:
+// 1. Checks if the MMR root is a valid checkpoint aka if the MMR root represents an epoch
+// 2. Checks if the header is actually part of the epoch
+// 3. Checks if the bridged tokens were spent already (to avoid double spending)
+// 4. Checks if the transaction is actually part of the block with a Merkle Proof
+
 contract TokenLockerOnEthereum is TokenLocker, OwnableUpgradeable {
     HarmonyLightClient public lightclient;
 
@@ -27,6 +35,8 @@ contract TokenLockerOnEthereum is TokenLocker, OwnableUpgradeable {
     function bind(address otherSide) external onlyOwner {
         otherSideBridge = otherSide;
     }
+
+
 
     function validateAndExecuteProof(
         HarmonyParser.BlockHeader memory header,

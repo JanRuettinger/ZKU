@@ -14,6 +14,9 @@ function hexToBytes(hex) {
     return bytes;
 }
 
+
+// This file is a test file which checks if certain core functions of the contracts deployed on Ethereum (MMRVerifier & TokenLocker) are implemented correctly.
+
 describe('HarmonyProver', function () {
     beforeEach(async function () {
         MMRVerifier = await ethers.getContractFactory("MMRVerifier");

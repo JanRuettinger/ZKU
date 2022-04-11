@@ -9,6 +9,13 @@ import "./EthereumParser.sol";
 import "./lib/EthUtils.sol";
 import "./ethash/ethash.sol";
 
+
+// This contract defines an Ethereum light client which is deployed on Harmony to assist in checking 
+// if a transaction on Ethereum is actually valid and included.
+// The most interesting part is the syncing procedure since this is where the current Ethereum light client is 
+// more inefficient compared to other light clients of other chains. The function which are responsible for syncing are
+// initialize() and addBlockHeader(). The code is self explanatory.
+
 /// @title Ethereum light client
 contract EthereumLightClient is Ethash, Initializable, PausableUpgradeable {
     using SafeMathUpgradeable for uint256;

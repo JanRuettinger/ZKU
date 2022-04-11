@@ -11,6 +11,12 @@ import "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
 // import "openzeppelin-solidity/contracts/proxy/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 
+
+
+// This contract defines a Harmonylight client which is deployed on Ethereum to assist in checking
+// if a transaction on Harmony is actually valid and included.
+// Due to Checkpoints the syncing process is much faster compared to the Ethereum light client.
+
 contract HarmonyLightClient is
     Initializable,
     PausableUpgradeable,

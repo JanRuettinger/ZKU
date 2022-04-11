@@ -7,6 +7,16 @@ import "./EthereumLightClient.sol";
 import "./EthereumProver.sol";
 import "./TokenLocker.sol";
 
+// This contract checks if the proof showing that ERC20 tokens were locked on Ethereum is correct.
+// The only important function to understand the functionality is validateAndExecuteProof().
+// Since the Ethereum chain doesn't yet support MRR root information in block headers, different checks are required to 
+// make sure that a transaction is actually valid and included.
+// The function takes an block number, a root hash, an mptkey and a proof and does the following:
+// 1. Gets the block hash from the block number (saves gas probably)
+// 2. Checks if the provided receipt hash was actually part of the last block
+// 3. Checks if the bridged tokens were spent already (to avoid double spending)
+// 4. Checks if the transaction is actually part of the block with a Merkle Proof
+
 contract TokenLockerOnHarmony is TokenLocker, OwnableUpgradeable {
     using RLPReader for RLPReader.RLPItem;
     using RLPReader for bytes;
